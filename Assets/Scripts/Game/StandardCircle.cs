@@ -5,32 +5,19 @@ using System.Linq;
 
 namespace AngryCirclesDreamBlast
 {
-    public class StandardCircle : MonoBehaviour
+    public abstract class StandardCircle : MonoBehaviour
     {
 
+        public enum CircleType { NONE, BLUE, YELLOW, WHITE, RED };
 
-        private string id;
-
-        private HashSet<GameObject> collidingObjects = new();
 
         private CircleCollider2D _collider;
 
+        public abstract CircleType Type { get; }
 
         private void Awake()
         {
             _collider = GetComponent<CircleCollider2D>();
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public HashSet<StandardCircle> FindCollidingCircles(HashSet<StandardCircle> result = null)
@@ -43,8 +30,7 @@ namespace AngryCirclesDreamBlast
             var touchedCircles = Physics2D.OverlapCircleAll(transform.position, _collider.radius);
             touchedCircles = touchedCircles.Where(x => x.CompareTag(gameObject.tag) && x.gameObject != gameObject).ToArray();
 
-
-            foreach(var col in touchedCircles)
+            foreach (var col in touchedCircles)
             {
                 var otherCircle = col.GetComponent<StandardCircle>();
                 if (!result.Contains(otherCircle))
@@ -54,7 +40,7 @@ namespace AngryCirclesDreamBlast
                 }
             }
 
-            foreach(var circle in allOtherCircles)
+            foreach (var circle in allOtherCircles)
             {
                 circle.FindCollidingCircles(result);
             }
@@ -66,15 +52,16 @@ namespace AngryCirclesDreamBlast
         public void Pop()
         {
             var touchingCircles = FindCollidingCircles();
-            if (touchingCircles.Count > 3)
+            if (touchingCircles.Count >= GameManager.Instance.Settings.CirclesToMatch)
             {
+                GameManager.Instance.onCircleTap?.Invoke(touchingCircles);
                 touchingCircles.ToList().ForEach(x => x.Explode());
             }
         }
 
         protected void Explode()
         {
-            GameObject.Destroy(gameObject,.01f);
+            GameObject.Destroy(gameObject, .01f);
         }
     }
 

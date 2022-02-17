@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6560936655224144965}
   - component: {fileID: 6560936655224144962}
   - component: {fileID: 6560936655224144963}
-  - component: {fileID: 2383438145613544194}
+  - component: {fileID: 7025858111799422022}
   m_Layer: 5
   m_Name: YellowCircle
   m_TagString: YellowCircle
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2383438145613544194
+--- !u!114 &7025858111799422022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +138,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6560936655224144961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce82ad48ee8a414db53456d1a9409bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 77362e227972d744b9413551245d1bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 998929922007760425}
   - component: {fileID: 8913651026383652122}
   - component: {fileID: 3285766972694132363}
-  - component: {fileID: 4630505809773567367}
+  - component: {fileID: 5187306067762777865}
   m_Layer: 5
   m_Name: BlueCircle
   m_TagString: BlueCircle
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4630505809773567367
+--- !u!114 &5187306067762777865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +138,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2797208940742726862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce82ad48ee8a414db53456d1a9409bc, type: 3}
+  m_Script: {fileID: 11500000, guid: cddbb2c10c45503458d380893f156fdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

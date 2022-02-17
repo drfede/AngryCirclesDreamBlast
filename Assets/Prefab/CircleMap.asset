@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14edf17b3fe1134f8d4ab9cd17c87cc, type: 3}
+  m_Name: CircleMap
+  m_EditorClassIdentifier: 
+  circles:
+  - circle: {fileID: 5187306067762777865, guid: d1f8a1f65253d2f4a96a91b245728c32, type: 3}
+    countToPool: 10
+    circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    circleColor: {r: 0, g: 0.14901961, b: 1, a: 0}
+  - circle: {fileID: 6254974350237257542, guid: d95953a500d615d4888da01d500a47fb, type: 3}
+    countToPool: 3
+    circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    circleColor: {r: 1, g: 0, b: 0, a: 0}
+  - circle: {fileID: 1119046892147813822, guid: 3f2b6046a15c06c4189e4c149980dbd0, type: 3}
+    countToPool: 5
+    circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    circleColor: {r: 1, g: 1, b: 1, a: 0}
+  - circle: {fileID: 7025858111799422022, guid: c68a62d52c60a2347b900fa9ff1568a9, type: 3}
+    countToPool: 10
+    circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    circleColor: {r: 1, g: 0.9019608, b: 0, a: 0}
