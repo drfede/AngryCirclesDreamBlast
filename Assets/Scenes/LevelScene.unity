@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 700}
+  m_AnchoredPosition: {x: 0, y: 650}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &21534471
@@ -1348,6 +1348,7 @@ GameObject:
   - component: {fileID: 737258916}
   - component: {fileID: 737258918}
   - component: {fileID: 737258917}
+  - component: {fileID: 737258919}
   m_Layer: 5
   m_Name: MapBG
   m_TagString: Untagged
@@ -1478,6 +1479,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!68 &737258919
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737258912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 3ac09e65cdf15f3478b3f380c18a4b46, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 2.1800206, y: 7.79981}
+  - {x: 7.557435, y: 18.240465}
+  - {x: -8.321624, y: 18.430515}
+  - {x: -2.918234, y: 7.785054}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &806864747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,8 +2145,8 @@ MonoBehaviour:
   circleMap: {fileID: 11400000, guid: 1a2fad3a63ee25341bfec10f396a3638, type: 2}
   levelToLoad: {fileID: 11400000, guid: 0cdb54ac85821e34a923e79ff34d4002, type: 2}
   ballsToSpawnPerWave: 15
-  delayBeforeSpawnNextWave: 0.45
-  spawnXRange: {x: -30, y: 30}
+  delayBeforeSpawnNextWave: 0.25
+  spawnXRange: {x: -50, y: 50}
   spawnYRange: {x: 0, y: 20}
   onCircleTap:
     m_PersistentCalls:
