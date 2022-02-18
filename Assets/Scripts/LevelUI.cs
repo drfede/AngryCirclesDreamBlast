@@ -11,9 +11,9 @@ namespace AngryCirclesDreamBlast
         [SerializeField]
         private List<UnityEngine.UI.Image> circleImages;
         [SerializeField]
-        private List<UnityEngine.UI.Text> circleTexts;
+        private List<TMPro.TextMeshProUGUI> circleTexts;
         [SerializeField]
-        private UnityEngine.UI.Text movesText;
+        private TMPro.TextMeshProUGUI movesText;
 
 
         private void Start()
