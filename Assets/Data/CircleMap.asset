@@ -29,3 +29,7 @@ MonoBehaviour:
     countToPool: 50
     circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     circleColor: {r: 1, g: 0.9019608, b: 0, a: 1}
+  - circle: {fileID: 2436375192852530361, guid: 68a8690d29ba63346ba810abaa53a593, type: 3}
+    countToPool: 50
+    circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    circleColor: {r: 0, g: 0, b: 0, a: 1}

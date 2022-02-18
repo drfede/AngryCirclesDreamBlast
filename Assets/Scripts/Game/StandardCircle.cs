@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.EventSystems;
+using System;
 
 namespace AngryCirclesDreamBlast
 {
     public abstract class StandardCircle : MonoBehaviour, IPointerDownHandler
     {
-        public enum CircleType { NONE, BLUE, YELLOW, WHITE, RED };
+        public enum CircleType { NONE, BLUE, YELLOW, WHITE, RED, BOMB };
+
 
         [Header("Collider Parameters")]
-        [SerializeField,Range(0.1f,2.0f)]
+        [SerializeField, Range(0.1f, 2.0f)]
         private float rayCastSizeMultiplier = 0.5f;
 
         [Header("Explosion Parameters")]
         [SerializeField]
-        private float maxExplosionScale = 1.2f;
+        protected float maxExplosionScale = 1.2f;
         [SerializeField]
-        private float popOutExplosionTime = .15f;
+        protected float popOutExplosionTime = .15f;
         [SerializeField]
-        private float popInExplosionTime = .2f;
+        protected float popInExplosionTime = .2f;
         [SerializeField]
-        private LeanTweenType popOutTweenType = LeanTweenType.easeInBounce;
+        protected LeanTweenType popOutTweenType = LeanTweenType.easeInBounce;
         [SerializeField]
-        private LeanTweenType popInTweenType = LeanTweenType.easeOutBounce;
+        protected LeanTweenType popInTweenType = LeanTweenType.easeOutBounce;
 
-        private CircleCollider2D _collider;
+        protected CircleCollider2D _collider;
 
+        public abstract bool IsSpecialType { get; }
         public abstract CircleType Type { get; }
 
         private void Awake()
@@ -35,14 +38,14 @@ namespace AngryCirclesDreamBlast
             _collider = GetComponent<CircleCollider2D>();
         }
 
-        public HashSet<StandardCircle> FindCollidingCircles(HashSet<StandardCircle> result = null)
+        internal virtual HashSet<StandardCircle> FindCollidingCircles(HashSet<StandardCircle> result = null)
         {
 
             HashSet<StandardCircle> allOtherCircles = new();
             if (result == null)
                 result = new();
 
-            var touchedCircles = Physics2D.OverlapCircleAll(transform.position, _collider.radius * rayCastSizeMultiplier);
+            var touchedCircles = FindNeighbors();
             touchedCircles = touchedCircles.Where(x => x.CompareTag(gameObject.tag) && x.gameObject != gameObject).ToArray();
 
             foreach (var col in touchedCircles)
@@ -63,19 +66,40 @@ namespace AngryCirclesDreamBlast
             return result;
         }
 
+        protected virtual Collider2D[] FindNeighbors()
+        {
+            return Physics2D.OverlapCircleAll(transform.position, _collider.radius * rayCastSizeMultiplier);
+        }
+
         [NaughtyAttributes.Button]
         public void Pop()
         {
             var touchingCircles = FindCollidingCircles();
-            if (touchingCircles.Count >= GameManager.Instance.Settings.CirclesToMatch)
+            if (touchingCircles.Count >= GameManager.Instance.Settings.CirclesToMatch || IsSpecialType)
             {
+                if (touchingCircles.Count >= GameManager.Instance.Settings.CirclesToSpawnSpecial && !IsSpecialType)
+                {
+                    SpawnSpecialCircle();
+                }
                 GameManager.Instance.onCircleTap?.Invoke(touchingCircles);
                 touchingCircles.ToList().ForEach(x => x.Explode());
             }
         }
 
+        protected void SpawnSpecialCircle()
+        {
+            var newCircle = CirclesPooler.Instance.PoolRandomSpecialCircle();
+            newCircle.transform.position = transform.position;
+            var startingScale = newCircle.transform.localScale;
+            newCircle.transform.localScale = Vector3.zero;
+            newCircle.gameObject.SetActive(true);
+            newCircle.gameObject.LeanScale(startingScale, popInExplosionTime).setEase(popInTweenType);
+
+        }
+
         protected virtual void Explode()
         {
+
             var startingScale = transform.localScale;
             gameObject.LeanScale(startingScale * maxExplosionScale, popOutExplosionTime).setEase(popOutTweenType).setOnComplete(() =>
               {

@@ -6,6 +6,8 @@ namespace AngryCirclesDreamBlast
 {
     public class BlueCircle : StandardCircle
     {
+        public override bool IsSpecialType => false;
+
         public override CircleType Type => CircleType.BLUE;
     }
 

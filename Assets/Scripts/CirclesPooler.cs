@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace AngryCirclesDreamBlast
 {
@@ -53,6 +54,15 @@ namespace AngryCirclesDreamBlast
             return newCircle;
         }
 
+        public StandardCircle PoolRandomSpecialCircle()
+        {
+            var allSpecials = circleMap.Circles.Where(x => x.Circle.IsSpecialType);
+            int randomSpecialIndex = UnityEngine.Random.Range(0, allSpecials.Count());
+
+            return PoolCircle(allSpecials.ElementAt(randomSpecialIndex).Circle.Type);
+
+        }
+
         public StandardCircle PoolCircle(StandardCircle.CircleType typeToPool)
         {
             StandardCircle circle = null;
@@ -73,16 +83,14 @@ namespace AngryCirclesDreamBlast
 
         public void GiveBack(StandardCircle circle)
         {
-            if (circleDic.TryGetValue(circle.Type, out var list))
-            {
-                if (list == null)
-                    list = new();
 
-                if (!list.Contains(circle))
-                    list.Add(circle);
+            if (!circleDic.TryGetValue(circle.Type, out var list))
+                list = new();
 
-                circle.gameObject.SetActive(false);
-            }
+            if (!list.Contains(circle))
+                list.Add(circle);
+            circle.gameObject.SetActive(false);
+
         }
 
 

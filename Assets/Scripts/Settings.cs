@@ -11,9 +11,11 @@ namespace AngryCirclesDreamBlast
         [Header("Main Settings")]
         [SerializeField]
         private int circlesToMatch = 3;
-
+        [SerializeField]
+        private int circlesToSpawnSpecial = 5;
 
         public int CirclesToMatch { get => circlesToMatch; }
+        public int CirclesToSpawnSpecial { get => circlesToSpawnSpecial; }
     }
 
 }

@@ -72,9 +72,22 @@ namespace AngryCirclesDreamBlast
         {
             var types = Enum.GetValues(typeof(StandardCircle.CircleType)).OfType<StandardCircle.CircleType>().ToList();
             types.Remove(StandardCircle.CircleType.NONE);
+            types.Remove(StandardCircle.CircleType.BOMB);
 
-            var targetNum = TargetLevels.Find(x => x.Type == poppedCircles.First().Type);
-            targetNum.TargetNumber = Mathf.Max(0, targetNum.TargetNumber - poppedCircles.Count);
+            foreach(var type in types)
+            {
+                var targetNum = targetLevels.Find(x => x.Type == type);
+                if (targetNum != null)
+                {
+                    int count = poppedCircles.Where(x => x.Type == type).Count();
+                    targetNum.TargetNumber = Mathf.Max(0, targetNum.TargetNumber - count);
+                }
+            }
+            //var targetNum = TargetLevels.Find(x => x.Type == poppedCircles.FirstOrDefault().Type);
+            //if (targetNum != null)
+            //{
+            //    targetNum.TargetNumber = Mathf.Max(0, targetNum.TargetNumber - poppedCircles.Count);
+            //}
             AvailableMoves--;
             onAfterPop?.Invoke();
             if (HasWon)
@@ -104,7 +117,7 @@ namespace AngryCirclesDreamBlast
         {
             var types = Enum.GetValues(typeof(StandardCircle.CircleType)).OfType<StandardCircle.CircleType>().ToList();
             types.Remove(StandardCircle.CircleType.NONE);
-            
+            types.Remove(StandardCircle.CircleType.BOMB);
             for (int i = 0; i < levelToLoad.StartingCircles; i += ballsToSpawnPerWave)
             {
                 GenerateRandomCircles(types, ballsToSpawnPerWave);
