@@ -74,7 +74,7 @@ namespace AngryCirclesDreamBlast
             }
         }
 
-        protected void Explode()
+        protected virtual void Explode()
         {
             var startingScale = transform.localScale;
             gameObject.LeanScale(startingScale * maxExplosionScale, popOutExplosionTime).setEase(popOutTweenType).setOnComplete(() =>
