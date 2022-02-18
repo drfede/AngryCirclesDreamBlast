@@ -61,7 +61,16 @@ namespace AngryCirclesDreamBlast
 
         protected void Explode()
         {
-            CirclesPooler.Instance.GiveBack(this);
+            var startingScale = transform.localScale;
+            gameObject.LeanScale(startingScale * 1.2f, .15f).setEase(LeanTweenType.easeInBounce).setOnComplete(() =>
+              {
+                  gameObject.LeanScale(Vector3.zero, .2f).setEase(LeanTweenType.easeOutBounce).setOnComplete(() =>
+                  {
+                      CirclesPooler.Instance.GiveBack(this);
+                      transform.localScale = startingScale;
+                  });
+  
+              });
         }
 
         public void OnPointerDown(PointerEventData eventData)
