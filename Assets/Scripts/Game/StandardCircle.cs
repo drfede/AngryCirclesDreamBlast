@@ -10,6 +10,21 @@ namespace AngryCirclesDreamBlast
     {
         public enum CircleType { NONE, BLUE, YELLOW, WHITE, RED };
 
+        [Header("Collider Parameters")]
+        [SerializeField,Range(0.1f,2.0f)]
+        private float rayCastSizeMultiplier = 0.5f;
+
+        [Header("Explosion Parameters")]
+        [SerializeField]
+        private float maxExplosionScale = 1.2f;
+        [SerializeField]
+        private float popOutExplosionTime = .15f;
+        [SerializeField]
+        private float popInExplosionTime = .2f;
+        [SerializeField]
+        private LeanTweenType popOutTweenType = LeanTweenType.easeInBounce;
+        [SerializeField]
+        private LeanTweenType popInTweenType = LeanTweenType.easeOutBounce;
 
         private CircleCollider2D _collider;
 
@@ -27,7 +42,7 @@ namespace AngryCirclesDreamBlast
             if (result == null)
                 result = new();
 
-            var touchedCircles = Physics2D.OverlapCircleAll(transform.position, _collider.radius/2);
+            var touchedCircles = Physics2D.OverlapCircleAll(transform.position, _collider.radius * rayCastSizeMultiplier);
             touchedCircles = touchedCircles.Where(x => x.CompareTag(gameObject.tag) && x.gameObject != gameObject).ToArray();
 
             foreach (var col in touchedCircles)
@@ -62,9 +77,9 @@ namespace AngryCirclesDreamBlast
         protected void Explode()
         {
             var startingScale = transform.localScale;
-            gameObject.LeanScale(startingScale * 1.2f, .15f).setEase(LeanTweenType.easeInBounce).setOnComplete(() =>
+            gameObject.LeanScale(startingScale * maxExplosionScale, popOutExplosionTime).setEase(popOutTweenType).setOnComplete(() =>
               {
-                  gameObject.LeanScale(Vector3.zero, .2f).setEase(LeanTweenType.easeOutBounce).setOnComplete(() =>
+                  gameObject.LeanScale(Vector3.zero, popInExplosionTime).setEase(popInTweenType).setOnComplete(() =>
                   {
                       CirclesPooler.Instance.GiveBack(this);
                       transform.localScale = startingScale;

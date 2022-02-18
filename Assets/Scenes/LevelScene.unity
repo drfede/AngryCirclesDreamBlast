@@ -2518,7 +2518,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2059083548}
   - component: {fileID: 2059083547}
-  - component: {fileID: 2059083546}
   - component: {fileID: 2059083545}
   m_Layer: 0
   m_Name: OverlayCamera
@@ -2560,14 +2559,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &2059083546
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059083544}
-  m_Enabled: 1
 --- !u!20 &2059083547
 Camera:
   m_ObjectHideFlags: 0

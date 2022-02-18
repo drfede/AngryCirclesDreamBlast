@@ -70,8 +70,9 @@ namespace AngryCirclesDreamBlast
 
         private void OnPop(HashSet<StandardCircle> poppedCircles)
         {
+            var types = Enum.GetValues(typeof(StandardCircle.CircleType)).OfType<StandardCircle.CircleType>().ToList();
+            types.Remove(StandardCircle.CircleType.NONE);
 
-            var types = new List<StandardCircle.CircleType>() { StandardCircle.CircleType.BLUE, StandardCircle.CircleType.RED, StandardCircle.CircleType.WHITE, StandardCircle.CircleType.YELLOW };
             var targetNum = TargetLevels.Find(x => x.Type == poppedCircles.First().Type);
             targetNum.TargetNumber = Mathf.Max(0, targetNum.TargetNumber - poppedCircles.Count);
             AvailableMoves--;
@@ -101,7 +102,9 @@ namespace AngryCirclesDreamBlast
 
         private IEnumerator StartLevel()
         {
-            var types = new List<StandardCircle.CircleType>() { StandardCircle.CircleType.BLUE, StandardCircle.CircleType.RED, StandardCircle.CircleType.WHITE, StandardCircle.CircleType.YELLOW };
+            var types = Enum.GetValues(typeof(StandardCircle.CircleType)).OfType<StandardCircle.CircleType>().ToList();
+            types.Remove(StandardCircle.CircleType.NONE);
+            
             for (int i = 0; i < levelToLoad.StartingCircles; i += ballsToSpawnPerWave)
             {
                 GenerateRandomCircles(types, ballsToSpawnPerWave);
