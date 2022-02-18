@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 namespace AngryCirclesDreamBlast
 {
-    public abstract class StandardCircle : MonoBehaviour
+    public abstract class StandardCircle : MonoBehaviour, IPointerDownHandler
     {
-
         public enum CircleType { NONE, BLUE, YELLOW, WHITE, RED };
 
 
@@ -27,7 +27,7 @@ namespace AngryCirclesDreamBlast
             if (result == null)
                 result = new();
 
-            var touchedCircles = Physics2D.OverlapCircleAll(transform.position, _collider.radius);
+            var touchedCircles = Physics2D.OverlapCircleAll(transform.position, _collider.radius/2);
             touchedCircles = touchedCircles.Where(x => x.CompareTag(gameObject.tag) && x.gameObject != gameObject).ToArray();
 
             foreach (var col in touchedCircles)
@@ -61,7 +61,15 @@ namespace AngryCirclesDreamBlast
 
         protected void Explode()
         {
-            GameObject.Destroy(gameObject, .01f);
+            CirclesPooler.Instance.GiveBack(this);
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (GameManager.Instance.InputEnabled)
+            {
+                Pop();
+            }
         }
     }
 

@@ -16,7 +16,10 @@ MonoBehaviour:
   - type: 1
     targetNumber: 30
   - type: 2
-    targetNumber: 20
+    targetNumber: 30
   - type: 3
-    targetNumber: 25
+    targetNumber: 30
+  - type: 4
+    targetNumber: 30
   movesLimit: 20
+  startingCircles: 60

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circles:
   - circle: {fileID: 5187306067762777865, guid: d1f8a1f65253d2f4a96a91b245728c32, type: 3}
-    countToPool: 10
+    countToPool: 50
     circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    circleColor: {r: 0, g: 0.14901961, b: 1, a: 0}
+    circleColor: {r: 0, g: 0.14901961, b: 1, a: 1}
   - circle: {fileID: 6254974350237257542, guid: d95953a500d615d4888da01d500a47fb, type: 3}
-    countToPool: 3
+    countToPool: 50
     circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    circleColor: {r: 1, g: 0, b: 0, a: 0}
+    circleColor: {r: 1, g: 0, b: 0, a: 1}
   - circle: {fileID: 1119046892147813822, guid: 3f2b6046a15c06c4189e4c149980dbd0, type: 3}
-    countToPool: 5
+    countToPool: 50
     circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    circleColor: {r: 1, g: 1, b: 1, a: 0}
+    circleColor: {r: 1, g: 1, b: 1, a: 1}
   - circle: {fileID: 7025858111799422022, guid: c68a62d52c60a2347b900fa9ff1568a9, type: 3}
-    countToPool: 10
+    countToPool: 50
     circleSprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    circleColor: {r: 1, g: 0.9019608, b: 0, a: 0}
+    circleColor: {r: 1, g: 0.9019608, b: 0, a: 1}

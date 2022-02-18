@@ -29,17 +29,6 @@ namespace AngryCirclesDreamBlast
                 {
                     var newObj = InstantiateNewcircle(elem.Circle.Type);
                     newObj.gameObject.SetActive(false);
-                    //var newCircle = Instantiate(elem.Circle,pooledParent);
-                    //newCircle.gameObject.SetActive(false);
-
-                    //circleDic.TryGetValue(newCircle.Type, out var circleList);
-
-                    //if (circleList == null)
-                    //    circleList = new();
-
-                    //circleList.Add(newCircle);
-                    ////circleDic.Add(newCircle.Type, circleList);
-                    //circleDic[newCircle.Type] = circleList;
                 }
             }
         }
@@ -68,14 +57,32 @@ namespace AngryCirclesDreamBlast
         {
             StandardCircle circle = null;
 
-            circle = circleDic[typeToPool].Where(x => !x.isActiveAndEnabled).First();
+
+            if (circleDic.TryGetValue(typeToPool, out var list))
+            {
+                circle = list.Where(x => !x.gameObject.activeInHierarchy).FirstOrDefault();
+            }
 
             if (circle == null)
             {
-
+                circle = InstantiateNewcircle(typeToPool);
             }
 
             return circle;
+        }
+
+        public void GiveBack(StandardCircle circle)
+        {
+            if (circleDic.TryGetValue(circle.Type, out var list))
+            {
+                if (list == null)
+                    list = new();
+
+                if (!list.Contains(circle))
+                    list.Add(circle);
+
+                circle.gameObject.SetActive(false);
+            }
         }
 
 
