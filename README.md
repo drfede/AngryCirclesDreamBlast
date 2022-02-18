@@ -59,6 +59,7 @@ Unity Inspector extension library:
 
 ## Final result
 
+Total time: 6-8hours
 In the game there are 4 standard circles (blue, yellow, white, red) and a special one (black), the special one is a bomb that destroys the nearby circles. The special circle spawns every time at least 5 circles pop.
 
 [https://drive.google.com/file/d/14QqKN6dwd9vYTq-HJAMBKvJoC-00e_ye/view?usp=sharing](https://drive.google.com/file/d/14QqKN6dwd9vYTq-HJAMBKvJoC-00e_ye/view?usp=sharing)
